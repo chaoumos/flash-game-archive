@@ -1,0 +1,44 @@
+---
+import type { Props as LayoutProps } from 'astro'
+interface Props extends LayoutProps {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{Astro.props.title || `${"Flash Game Archive: Relive the Classics"}`}</title>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-retro-blue text-retro-white py-4 shadow-md">
+        <div class="container mx-auto px-4">
+            <nav class="flex items-center justify-between">
+                <a href="/" class="text-2xl font-bold">Flash Game Archive</a>
+                <ul class="flex space-x-6">
+                    <li><a href="/" class="hover:text-retro-yellow">Home</a></li>
+                    <li><a href="/blog/" class="hover:text-retro-yellow">Blog</a></li>
+                    <li><a href="#" class="hover:text-retro-yellow">Games</a></li>
+                    <li><a href="#" class="hover:text-retro-yellow">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8 px-4">
+        <slot />
+    </main>
+
+    <footer class="bg-retro-black text-retro-white text-center py-4 mt-8">
+        © {new Date().getFullYear()} Flash Game Archive: Relive the Classics
+    </footer>
+</body>
+</html>

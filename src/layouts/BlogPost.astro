@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Props as BlogPostProps } from 'astro';
+
+interface Props extends BlogPostProps {
+  title: string;
+  description: string;
+  pubDate: string;
+}
+
+const { title, description, pubDate } = Astro.props as Props;
+---
+
+<Layout title={title} description={description}>
+    <article class="prose lg:prose-xl">
+        <h1 class="text-3xl font-bold mb-4">{title}</h1>
+        <time datetime={pubDate} class="text-gray-500 mb-4">Published on {new Date(pubDate).toLocaleDateString()}</time>
+        <p class="text-gray-700 mb-4">{description}</p>
+        <slot />
+    </article>
+</Layout>
